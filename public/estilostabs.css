@@ -1,0 +1,45 @@
+*{
+    font-family: Arial;
+    
+}
+
+.tabs{
+    background-color: white;
+    color: black;
+    margin: 0 auto;
+    
+    text-align: center; 
+     
+    width: 900px;
+    height: 620px;
+    background-repeat: no-repeat;
+    opacity: 90%;
+    
+}
+#tabs{
+    background-image: url('images/fondo.JPG');
+    background-repeat: no-repeat;
+    background-size: 1200px 800px;
+
+}
+#nav-home-tab{
+    color: white;
+    background-color: #104609;
+    object-position: bottom;
+}
+#nav-profile-tab{
+    background-color: #104609;
+    color: white;
+    object-position: bottom;
+}
+.boton{
+    background-color: black;
+    color: white;
+    height: 50px;
+    width: 150px;
+}
+.tab-pane {
+    width: 850px;
+    height: 350px;
+    align-content: center;
+}

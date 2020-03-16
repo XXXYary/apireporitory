@@ -1,0 +1,26 @@
+.tabs{
+    background-color: white;
+    color: black;
+    margin: 0 auto;
+    align-items: right;
+    text-align: center; 
+    align-content: right;  
+    width: 900px;
+    height: 620px;
+    background-repeat: no-repeat;
+    opacity: 90%;
+    
+}
+
+
+#nav-home-tab{
+    color: white;
+    background-color: #104609;
+    object-position: bottom;
+}
+
+#tabs{
+    background-image: url('images/fondo.JPG');
+    background-repeat: no-repeat;
+    background-size: 1200px 800px;
+}
