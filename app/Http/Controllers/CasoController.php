@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\caso;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ApiController;
 
-class CasoController extends Controller
+class CasoController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,8 @@ class CasoController extends Controller
      */
     public function index()
     {
-        //
+        $caso = caso::all();
+        return $this->showAll($caso);
     }
 
     /**
@@ -34,7 +36,16 @@ class CasoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $reglas = [
+            'tcaso'=>['regex:/^[a-z,A-Z, ,á,é,í,ó,ú,ñ]*$/'],
+            'activo'=>['regex:/^[a-z,A-Z, ,á,é,í,ó,ú,ñ]{2}*$/'],
+        ];
+
+        $campos = $request->all();
+
+        $this->validate($request, $reglas);
+        $caso = caso::create($campos);
+        return $this->showOne($caso, 201);
     }
 
     /**
@@ -45,7 +56,8 @@ class CasoController extends Controller
      */
     public function show($id)
     {
-        //
+        $caso = caso::findOrfail($id);
+        return $this->showOne($caso);
     }
 
     /**
@@ -68,7 +80,23 @@ class CasoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $caso = caso::findOrfail($id);
+
+        if($request->has('tcaso')){
+            $caso->tcaso = $request->tcaso;
+        }
+
+        if($request->has('activo')){
+            $caso->activo = $request->activo;
+        }
+
+        if(!$caso->isDirty()){
+            return response()->json(['error'=>'Debes de especificar un valor direfente negro si no, no jala', 'code'=>422],422);
+        }
+
+        $caso->save();
+        return response()->json(['data'=>$caso, 200]);
+        return $this->showOne($caso);
     }
 
     /**
@@ -79,6 +107,8 @@ class CasoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $caso = caso::findOrfail($id);
+        $caso->delete();
+        return $this->showOne($prueba);
     }
 }
